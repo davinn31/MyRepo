@@ -8,7 +8,7 @@ version = 1
 
 cloudstream {
     // SESUAIKAN DENGAN ISI FILE KOTLIN ANDA:
-    packageName = "com.example" 
+    pkg = "com.example" 
     
     description = "Lorem ipsum"
     authors = listOf("Cloudburst", "diri")
