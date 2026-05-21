@@ -14,15 +14,22 @@ class ExampleProvider : MainAPI() {
     override val hasMainPage = true
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
-        val htmlMentah = app.get("$mainUrl/homepage").text
+        // Ambil langsung dari root URL karena /homepage tidak eksis
+        val htmlMentah = app.get(mainUrl).text
         val dokumen = Jsoup.parse(htmlMentah)
         val daftarFilm = ArrayList<SearchResponse>()
 
-        dokumen.select("p.movie-card-title").forEach { elemen ->
-            val judulFilm = elemen.text().trim()
-            daftarFilm.add(newMovieSearchResponse(judulFilm, "$mainUrl/homepage", TvType.Movie) {
-                this.posterUrl = "https://movieboxonline.org"
-            })
+        // Menggunakan selector alternatif yang umum pada template movie-box
+        dokumen.select(".movie-post, .flw-item, .post-item").forEach { elemen ->
+            val judulFilm = elemen.select(".movie-title, h2, h3").text().trim()
+            val linkFilm = fixUrl(elemen.select("a").attr("href"))
+            val poster = fixUrl(elemen.select("img").attr("src"))
+
+            if (judulFilm.isNotEmpty() && linkFilm.isNotEmpty()) {
+                daftarFilm.add(newMovieSearchResponse(judulFilm, linkFilm, TvType.Movie) {
+                    this.posterUrl = poster
+                })
+            }
         }
 
         return newHomePageResponse(listOf(HomePageList("Trending MovieBox", daftarFilm)), false)
