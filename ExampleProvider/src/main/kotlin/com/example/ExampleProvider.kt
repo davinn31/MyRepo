@@ -43,6 +43,7 @@ class ExampleProvider : MainAPI() {
 @CloudstreamPlugin
 class ExampleProviderPlugin : Plugin() {
     override fun load(context: Context) {
-        plugin.registerProvider(ExampleProvider())
+        // Hapus 'plugin.', panggil langsung fungsi registrasinya
+        registerProvider(ExampleProvider())
     }
 }
