@@ -40,3 +40,9 @@ class ExampleProvider : MainAPI() {
         return listOf()
     }
 }
+class CloudstreamPlugin : Plugin() {
+    override fun load(context: Context) { // 'Context' wajib menggunakan huruf C kapital
+        // Melakukan registrasi agar Cloudstream mengenali Provider Anda saat diunduh
+        registerProvider(ExampleProvider())
+    }
+}
