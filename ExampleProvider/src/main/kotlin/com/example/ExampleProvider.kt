@@ -1,6 +1,13 @@
-package com.example // Tetap pertahankan nama package asli dari file Anda
+package com.example
 
+import android.content.Context
 import com.lagradost.cloudstream3.*
+import com.lagradost.cloudstream3.plugins.CloudstreamPlugin
+import com.lagradost.cloudstream3.plugins.Plugin
+import com.lagradost.cloudstream3.MainAPI
+import com.lagradost.cloudstream3.TvType
+import com.lagradost.cloudstream3.SearchResponse
+import com.lagradost.cloudstream3.MovieSearchResponse
 import org.jsoup.Jsoup
 
 class ExampleProvider : MainAPI() { 
