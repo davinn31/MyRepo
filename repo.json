@@ -1,0 +1,8 @@
+{
+  "name": "Repo Sakti",
+  "description": "Koleksi 5 ekstensi kustom anti-mati hasil kodingan mandiri",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://raw.githubusercontent.com/davinn31/MyRepo/refs/heads/builds/plugin.json"
+  ]
+}
